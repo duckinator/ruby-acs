@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+require File.join(File.dirname(__FILE__), '..', 'lib', 'acs.rb')
+
+# The entire functionality is wrapped in a lambda so it is transparent.
+lambda do
+  debug = !!ARGV.delete('-d') || !!ARGV.delete('--debug')
+
+  file = ARGV[0]
+
+  explicit_help = %w[--help -h].include?(file)
+
+  if file.nil? || explicit_help
+    puts "Usage: #{$0} FILE"
+    exit 1 unless explicit_help
+  else
+    acs = ACS.new(file)
+    acs.debug = debug
+    acs.process!
+    acs.run!
+  end
+end.call

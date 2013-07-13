@@ -5,12 +5,12 @@ require 'acs/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "acs"
-  spec.version       = Acs::VERSION
+  spec.version       = ACS::VERSION
   spec.authors       = ["Nick Markwell"]
   spec.email         = ["nick@duckinator.net"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.description   = "An implementation of ooc's Awesome Closure Syntax for Ruby, in Ruby."
+  spec.summary       = spec.description
+  spec.homepage      = "https://github.com/duckinator/ruby-acs"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

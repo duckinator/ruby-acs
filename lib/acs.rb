@@ -96,7 +96,7 @@ class ACS
         plevel += 1
       elsif part[1] == :on_rparen
         plevel -= 1
-        ret = part[0] if plevel <= 0
+        ret = part if plevel <= 0
         break
       elsif part[1] == :on_op && part[2] == '|'
         between_bars = !between_bars
@@ -106,12 +106,12 @@ class ACS
         blevel -= 1
       elsif part[1] == :on_comma && !between_bars &&
             plevel <= 0 && blevel <= 0
-        ret = part[0]
+        ret = part
         break
       end
     end
 
-    line, column = ret
+    line, column = ret[0]
 
     line -= 1 # We need 0-indexed, not 1-indexed.
     column += 'lambda { '.length - 1

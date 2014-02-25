@@ -1,6 +1,17 @@
-# Acs
+# ACS
 
-TODO: Write a gem description
+A port of [ooc](http://ooc-lang.org)'s Awesome Clojure Syntax to Ruby.
+
+Yes, this modifies Ruby's syntax.
+
+Makes the following two lines equivalent:
+
+```ruby
+test(|a, b| p [a, b])
+test(lambda {|a, b| p [ a , b ]})
+```
+
+Enjoy.
 
 ## Installation
 
@@ -18,7 +29,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Run programs with `ruby-acs` instead of `ruby`.
+
+You can set the shebang line to `#!/usr/bin/env ruby-acs`, or run it directly with `ruby-acs <normal arguments for ruby>`.
 
 ## Contributing
 

@@ -55,16 +55,19 @@ class ACS
     defs    = index_of_each.(:on_kw, 'def')
     lparens = index_of_each.(:on_lparen)
     commas  = index_of_each.(:on_comma)
+    rockets = index_of_each.(:on_op, '=>')
     bars    = index_of_each.(:on_op, '|')
-    
-    # Remove all left parenthesis that are part of a `def ...(...)`.
-    lparens.reject! { |i| defs.include?(i - 2) }
 
-    # Remove all bars that don't immediately follow a left parenthesis or comma.
-    bars.select! { |i| lparens.include?(i - 1) || commas.include?(i - 1) }
+    everything = lparens + commas + rockets
+
+    # Remove all left parenthesis that are part of a `def ...(...)`.
+    lparens.reject! {|i| defs.include?(i - 2)}
+
+    # Remove all bars that aren't in `everything`.
+    bars.select! {|i| everything.include?(i - 1)}
 
     # Remove all left parenthesis that don't immediately precede a bar.
-    lparens.select! { |i| bars.include?(i + 1) }
+    lparens.select! {|i| bars.include?(i + 1)}
 
     return if bars.empty?
 
